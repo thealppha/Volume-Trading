@@ -50,7 +50,7 @@ class Coin:
                 self.start_time = data_[-1][0] + 1
             else:
                 print(f"Request failed with status code: {response.status_code}")
-                return None
+                break
 
         selected_data = [[datetime.fromtimestamp(float(candle[i]) / 1000) if i == 0 else float(candle[i]) for i in range(len(candle)) if i in [0, 1, 2, 3, 4, 5, 7, 8, 9, 10]] for candle in data]
         self.df = pd.DataFrame(selected_data, columns=['Date', 'Open', 'High', 'Low', 'Close', 'Volume', 'Quote_Volume', 'Trades', 'Taker_Base_Volume', 'Taker_Quote_Volume'])

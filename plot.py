@@ -3,7 +3,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 # Load the CSV file
-df = pd.read_csv("data/Final_SOLUSDT_1m_2021-01-01_2023-08-01.csv")
+df = pd.read_csv("data/Analyze/Final_SOLUSDT_1m_2021-01-01_2023-08-01.csv")
 
 # Extract year and month from the Date column
 year_month_day = ["-".join(df["Date"].iloc[i].split(" ")[0].split("-")[:2]) for i in range(len(df))]

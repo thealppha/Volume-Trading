@@ -10,18 +10,9 @@ class Params:
         'stop_limit': np.arange(0.05, 0.11, 0.01).round(2)
     }
 
-    # Try Example at Short Time
-    # param_ranges = {
-    #     'ma_up_plus_ratio': [1.2, 2],
-    #     'price_check_time': [30],
-    #     'price_check_tresh': np.arange(0.001, 0.004, 0.003).round(3),
-    #     'init_highest_profit': np.arange(1, 1.4, 0.04).round(2),
-    #     'stop_limit': np.arange(0.03, 0.06, 0.03).round(2)
-    # }
-
     # TODO
     #  GridSearch flag aktif değilken,
-    #  belirlemiş olduğumuz best parametrele burada atanacaktır ve
+    #  belirlemiş olduğumuz best parametreler burada atanacaktır ve
     #  gridsearch yapmadan sadece volume analyze de kullanılacaktır
     best_params = {
         'ma_up_plus_ratio': 2,
