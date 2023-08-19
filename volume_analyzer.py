@@ -60,7 +60,6 @@ class VolumeAnalyzer:
         exit_indexes = []
 
         profits = []
-        # coin.df["profits"] = 1
 
         for index in ma_up_indexes:
             if len(exit_indexes) != 0:
@@ -71,7 +70,6 @@ class VolumeAnalyzer:
             price_change = get_price_change(past_profit)
 
             if self.price_check_func(price_change):
-
                 highest_profit = self.init_highest_profit
                 profit = 1
                 enter_index = index
@@ -94,15 +92,12 @@ class VolumeAnalyzer:
                 exit_index = index
                 exit_indexes.append(exit_index)
 
-                # coin.df["profits"].iloc[exit_index] = profit
                 profits.append(profit)
 
                 # print("index     ", coin.df["Date"][enter_index], price_change.name, coin.df["Date"][exit_index], enter_index, exit_index, profit, get_price_change(profit).name)
             else:
-                pass
                 # print("index     ", coin.df["Date"][index], price_change.name)
-
-        # coin.df.to_csv(f"data/Final_{symbol}_{interval}_{startDate.date()}_{endDate.date()}.csv", index=False)
+                pass
 
         print(f"{coin.symbol} PARAMS | Stop Limit: {self.stop_limit} "
               f"| Price Comparison Time: {self.price_check_time} "
@@ -112,7 +107,7 @@ class VolumeAnalyzer:
               f"| Default Profit: {round(coin.get_profit(-1, 0), 2)} "
               f"| Our Profit: {round(np.prod(profits), 2)}")
 
-        return round(np.prod(profits), 2)
+        return len(exit_indexes), round(coin.get_profit(-1, 0), 2), round(np.prod(profits), 2)
 
     def plot(self):
         pass

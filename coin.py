@@ -24,7 +24,7 @@ class Coin:
     def get_profit(self, exit_index, enter_index):
         return self.df['Close'][exit_index % len(self.df['Close'])] / self.df['Close'][enter_index]
 
-    def save_data(self):
+    def get_and_save_data(self):
         self.get_info()
         self.calc_ma()
         self.save_csv()

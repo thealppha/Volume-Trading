@@ -7,7 +7,7 @@ from volume_analyzer import VolumeAnalyzer
 
 class GridSearch:
     df_iteratives = pd.DataFrame(columns=['ma_up_plus_ratio', 'price_check_time', 'price_check_tresh',
-                                          'init_highest_profit', 'stop_limit', 'profit'])
+                                          'init_highest_profit', 'stop_limit', 'trade_number', 'default_profit', 'our_profit'])
 
     def __init__(self, coin, param_ranges, symbol, start_date, end_date, interval):
         self.coin = coin
@@ -24,7 +24,7 @@ class GridSearch:
         param_combinations = product(*self.param_ranges.values())
 
         # Find the length of param_combinations
-        num_combinations = len(list(param_combinations))
+        num_combinations = 4320
 
         # Loop through each combination
         for ind, combination in enumerate(param_combinations):
@@ -35,19 +35,20 @@ class GridSearch:
 
             volume_analyzer = VolumeAnalyzer(*combination_params)
 
-            current_profit = volume_analyzer.analyze(self.coin)
+            trade_number, default_profit, current_profit = volume_analyzer.analyze(self.coin)
 
-            GridSearch.df_iteratives.loc[ind] = combination_params[:-1] + [current_profit]
+            GridSearch.df_iteratives.loc[ind] = combination_params[:-1] + [trade_number, default_profit, current_profit]
 
             # Check if current combination is better than previous best
             if current_profit > best_profit:
                 best_profit = current_profit
 
-            print(f"Grid Search Index : {ind+1} | Completion Percentage : % {100 * (ind+1) / num_combinations}\n")
+            print(f"Grid Search Index : {ind + 1} | Completion Percentage : % {100 * (ind + 1) / num_combinations}\n")
 
             GridSearch.df_iteratives.to_csv(f"data/GridSearch/GridSearch_Iteratives_{self.symbol}_{self.interval}_{self.start_date.date()}_{self.end_date.date()}.csv", index=False)
 
-        sorted_df = GridSearch.df_iteratives.sort_values(by="profit", ascending=False)
-        best_combinations = sorted_df[sorted_df["profit"] == sorted_df["profit"].max()]
+        sorted_df = GridSearch.df_iteratives.sort_values(by="our_profit", ascending=False)
+        best_combinations = sorted_df[sorted_df["our_profit"] == sorted_df["our_profit"].max()]
+        # TODO: Profitin max a eşit olanlarını alıp kaydediyorum ama best algısı değişebilir, mesela trade sayısı çok çok az ise şüphe duyulur. Güncellenmesi gerekir.
 
         best_combinations.to_csv(f"data/GridSearch/GridSearch_Best_Combinations_{self.symbol}_{self.interval}_{self.start_date.date()}_{self.end_date.date()}.csv", index=False)

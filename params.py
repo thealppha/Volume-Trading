@@ -10,10 +10,7 @@ class Params:
         'stop_limit': np.arange(0.05, 0.11, 0.01).round(2)
     }
 
-    # TODO
-    #  GridSearch flag aktif değilken,
-    #  belirlemiş olduğumuz best parametreler burada atanacaktır ve
-    #  gridsearch yapmadan sadece volume analyze de kullanılacaktır
+    # To make single volume analysis without make grid search
     best_params = {
         'ma_up_plus_ratio': 2,
         'price_check_time': 30,
