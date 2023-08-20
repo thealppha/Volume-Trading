@@ -47,8 +47,8 @@ class GridSearch:
 
             GridSearch.df_iteratives.to_csv(f"data/GridSearch/GridSearch_Iteratives_{self.symbol}_{self.interval}_{self.start_date.date()}_{self.end_date.date()}.csv", index=False)
 
+        # Rows of max 10 profit
         sorted_df = GridSearch.df_iteratives.sort_values(by="our_profit", ascending=False)
-        best_combinations = sorted_df[sorted_df["our_profit"] == sorted_df["our_profit"].max()]
-        # TODO: Profitin max a eşit olanlarını alıp kaydediyorum ama best algısı değişebilir, mesela trade sayısı çok çok az ise şüphe duyulur. Güncellenmesi gerekir.
+        best_combinations = sorted_df.iloc[:10].reset_index() 
 
         best_combinations.to_csv(f"data/GridSearch/GridSearch_Best_Combinations_{self.symbol}_{self.interval}_{self.start_date.date()}_{self.end_date.date()}.csv", index=False)
