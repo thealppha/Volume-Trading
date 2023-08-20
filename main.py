@@ -15,7 +15,7 @@ if __name__ == "__main__":
     grid_search_flag = True
     get_and_save_data_flag = False
 
-    symbol = "BTCUSDT"
+    symbol = "SOLUSDT"
     limit_time = False
     ########################################################
     interval = "1m"
