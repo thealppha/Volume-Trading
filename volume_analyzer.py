@@ -100,6 +100,7 @@ class VolumeAnalyzer:
                 pass
 
         print(f"{coin.symbol} PARAMS | Stop Limit: {self.stop_limit} "
+              f"| Highest Profit: {highest_profit} "
               f"| Price Comparison Time: {self.price_check_time} "
               f"| Price Comparison Ratio: {self.price_check_tresh} "
               f"| MA Comparison Ratio: {self.ma_up_plus_ratio} "

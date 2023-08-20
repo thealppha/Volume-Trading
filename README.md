@@ -1,26 +1,24 @@
 # Volume-Trading
 
-To access raw datas, click link: 
+### Steps
 
-**https://drive.google.com/drive/folders/1hhwc2TZqx1vS4AB4by_q395oy6-keOwv?usp=sharing**
+1) Clone repo:
+    ```
+    git clone https://github.com/TunaUlusoy/Volume-Trading.git
+    ```
 
-Clone repo:
-```
-git clone https://github.com/TunaUlusoy/Volume-Trading.git
-```
+2) To prepare folder structure:
+    ```
+    cd Volume-Trading
+    python
+    >> import os; os.makedirs("data/RawData"); os.makedirs("data/GridSearch")
+    >> exit()
+    ```
 
-To prepare folder structure:
-```
-cd Volume-Trading
-makedirs data/RawData data/GridSearch
-```
+3) Download raw datas from link and copy to data/RawData
+    **https://drive.google.com/drive/folders/1hhwc2TZqx1vS4AB4by_q395oy6-keOwv?usp=sharing**
 
-Download raw datas from link and copy to data/RawData
-```
-cp -r Downloads/RawData/* data/RawData 
-```
-
-Check flags which you wanna process in main.py and then:
-```
-python main.py
-```
+4) Check flags which you wanna run in **main.py** and then:
+    ```
+    python main.py
+    ```
